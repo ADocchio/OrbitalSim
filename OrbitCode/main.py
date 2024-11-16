@@ -76,7 +76,12 @@ KOE_ISS = [6731, 0.000216, 51.64, 65.34, 225.44, 0]
 KOE_GEO = [42164, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 # Load SPICE kernel for planetary data
-spice.furnsh('kernal.mk')
+try:
+    spice.furnsh('kernal.mk')
+except Exception as e:
+    print("""Make sure you have downloaded de430.bsp and placed it in the Spice folder,
+    https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/""")
+    sys.exit(0)
 
 # Store all active orbits
 orbits = {}
